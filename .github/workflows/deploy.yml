@@ -8,15 +8,18 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # 提前採用 Node.js 24 以符合未來規範
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18' # 根據你的專案需求調整 Node.js 版本
+          node-version: '22' # 升級至最新的長期支援版本 (LTS)
+          cache: 'npm' # 加入快取功能以加速後續建置
 
       - name: Install dependencies
         run: npm install
@@ -25,7 +28,7 @@ jobs:
         run: npm run build # 執行你的建置命令，Vite 預設是 'npm run build'
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist # 指定建置後的輸出目錄，Vite 預設是 'dist'
