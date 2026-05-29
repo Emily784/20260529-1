@@ -8,6 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # 允許 Action 推送內容到倉庫（例如更新 gh-pages 分支）
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # 提前採用 Node.js 24 以符合未來規範
 
