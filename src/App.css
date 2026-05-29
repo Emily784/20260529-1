@@ -1,0 +1,485 @@
+/* 主容器 */
+.app-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #f8fafc;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: #333;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+/* 工具列與按鈕 */
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+}
+
+.import-export {
+  display: flex;
+  gap: 12px;
+}
+
+button, .btn-secondary {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+button:hover {
+  background: #f8f9fa;
+  border-color: #ccc;
+}
+
+.btn-primary {
+  background: #3498db;
+  color: white;
+  border-color: #2980b9;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
+}
+
+.btn-secondary {
+  background: #95a5a6;
+  color: white;
+}
+
+/* 表單區塊 */
+.form-section {
+  background: #fdfdfd;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.input-group input, .input-group select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 150px;
+}
+
+/* 行程列表表格 */
+.calendar-list {
+  overflow-x: auto;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.event-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-left: 5px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.event-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.event-date {
+  font-size: 13px;
+  color: #7f8c8d;
+  font-weight: bold;
+}
+
+.event-summary {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.event-desc {
+  font-size: 14px;
+  color: #95a5a6;
+}
+
+.event-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* 分類標籤 */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.btn-delete {
+  background: transparent;
+  border: none;
+  color: #e74c3c;
+  font-size: 20px;
+  padding: 0 5px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-delete:hover { color: #c0392b; background: transparent; }
+
+/* 月曆視圖樣式 */
+.month-calendar {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #f8f9fa;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.calendar-header-days div:first-child { color: #e74c3c; }
+.calendar-header-days div:last-child { color: #3498db; }
+
+.calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid #eee;
+}
+
+.calendar-cell {
+  min-height: 100px;
+  border: 1px solid #eee;
+  padding: 5px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.calendar-cell.sunday {
+  background-color: #fff5f5;
+}
+
+.calendar-cell.saturday {
+  background-color: #f0f7ff;
+}
+
+.calendar-cell.sunday .day-number {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.calendar-cell.saturday .day-number {
+  color: #3498db;
+  font-weight: bold;
+}
+
+.calendar-cell:not(.empty):hover {
+  background-color: #f0f7ff;
+  border-color: #3498db;
+  z-index: 1;
+}
+
+.calendar-cell.empty {
+  background: #f9f9f9;
+  cursor: default;
+}
+
+.day-number {
+  font-size: 12px;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+.cell-events {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mini-event {
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* 今天格子的發亮效果 - 置於週末樣式之後以確保覆蓋權限 */
+.calendar-cell.is-today {
+  border: 2px solid #aa3bff;
+  box-shadow: 0 0 15px rgba(170, 59, 255, 0.4);
+  background-color: #fcfaff;
+  z-index: 2;
+}
+
+/* 新功能區塊佈局 */
+.extra-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 800px) {
+  .extra-features { grid-template-columns: 1fr; }
+}
+
+.study-section, .expense-section {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.study-item-card {
+  background: linear-gradient(145deg, #ffffff, #f0f4f8);
+  border-left: 4px solid #3498db;
+  margin-bottom: 12px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.05);
+}
+
+.study-item-card.completed {
+  opacity: 0.7;
+  border-left-color: #2ecc71;
+  background: #f8f9fa;
+}
+
+.expense-hero-card {
+  background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-badge {
+  background: var(--accent-bg);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.progress-container {
+  height: 10px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  border: 1px solid #e2e8f0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-input-group {
+  display: flex;
+  gap: 8px;
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #f1f5f9;
+}
+
+.feature-input-group input, .feature-input-group select {
+  background: white;
+  border: 1px solid #cbd5e1;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* 讀書計畫卡片 */
+.study-item-card {
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.item-main {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.item-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-tag {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.item-date {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.expense-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.expense-hero-card {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-stat label {
+  font-size: 12px;
+  opacity: 0.8;
+  display: block;
+}
+
+.main-amount {
+  font-size: 28px;
+  font-weight: bold;
+  color: #38bdf8;
+}
+
+.expense-visualizer {
+  margin-bottom: 25px;
+}
+
+.breakdown-item {
+  margin-bottom: 10px;
+}
+
+.breakdown-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #475569;
+}
+
+.breakdown-bar-bg {
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.breakdown-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.list-item.completed .item-text {
+  text-decoration: line-through;
+  color: #bdc3c7;
+}
+
+.item-text { flex: 1; font-size: 14px; }
+
+.expense-grid-container {
+  margin-top: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.expense-section table { font-size: 13px; }
